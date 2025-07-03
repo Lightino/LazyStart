@@ -69,13 +69,13 @@ Skip the boilerplate. Focus on what matters.
 ### 1. Clone the repository
 
 ```bash
-git  clone  https://github.com/your-user/repo-name.git
-cd  repo-name
+git clone https://github.com/your-user/repo-name.git
+cd repo-name
 ```
 
 ### 2. Configure environment variables
 
-Copy the `.env` file and adjust the values for your setup:
+Copy the `.env` file and adjust the values for your setup: (remember: if you don't want your environment variables to end up on GitHub, add them to the .gitignore file)
 
 ```bash
 cp  .env.development  .env
@@ -91,8 +91,8 @@ Required values:
 ### 3. Run in development
 
 ```bash
-bun  install
-bun  run  dev
+bun install
+bun run dev
 ```
 
 Accessible at:
@@ -108,14 +108,14 @@ Accessible at:
 Build and run in production:
 
 ```bash
-docker  build  -t  fullstack-app  .
-docker  run  -p  3000:3000  --env-file  .env  fullstack-app
+docker build -t fullstack-app  .
+docker run -p 3000:3000 --env-file .env fullstack-app
 ```
 
 Or use `docker-compose`:
 
 ```bash
-docker-compose  up  --build
+docker-compose up --build
 ```
 
 ---
@@ -127,13 +127,13 @@ This project uses **Knex** for migrations and **Bookshelf** as ORM.
 Run migrations locally:
 
 ```bash
-bun  run  knex  migrate:latest
+bun run knex migrate:latest
 ```
 
 Or:
 
 ```bash
-bun  run  knex:dev  migrate:latest
+bun run knex:dev migrate:latest
 ```
 
 Migrations are automatically applied in production.
@@ -148,8 +148,8 @@ Update your credentials in `main.js`:
 
 ```js
 createAuth0({
-domain:  "your-auth0-domain",
-clientId:  "your-auth0-client-id",
+  domain:  "your-auth0-domain",
+  clientId:  "your-auth0-client-id",
 ...
 })
 ```
@@ -161,7 +161,7 @@ clientId:  "your-auth0-client-id",
 To compile the production frontend:
 
 ```bash
-bun  run  build
+bun run build
 ```
 
 Generated files will be located in the `dist/` directory.
