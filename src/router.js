@@ -7,24 +7,21 @@ const router = createRouter({
   routes,
 })
 
-// Navigation guard con Pinia
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
 
-  // se il token non è ancora stato caricato (es. su refresh), lo carico da localStorage
   if (!authStore.token) {
-    authStore.loadTokenFromStorage()
+    await authStore.loadTokenFromStorage()
   }
 
-  const isAuth = authStore.isAuthenticated
-
-  if (to.meta.requiresAuth && !isAuth) {
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next({ name: 'login' })
-  } else if (to.meta.guest && isAuth) {
+  } else if (to.meta.guest && authStore.isAuthenticated) {
     next({ name: 'dashboard' })
   } else {
     next()
   }
 })
+
 
 export { router }
