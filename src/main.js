@@ -26,6 +26,8 @@ app.use(
     useRefreshTokens: true,
     authorizationParams: {
       redirect_uri: window.location.origin,
+      audience: "your-audience",  // <-- fondamentale
+      scope: "openid profile email offline_access",            // <-- include offline_access per i refresh token
     },
   })
 );
